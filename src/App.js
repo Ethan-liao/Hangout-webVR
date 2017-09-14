@@ -1,94 +1,132 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import 'aframe';
 import 'aframe-physics-system';
 import 'aframe-physics-components';
-import 'aframe-room-component';
-import Officeroom from './components/room'
-import Bigbox from './components/box'
+import 'aframe-fence-component';
+import 'aframe-animation-component';
+import 'aframe-particle-system-component';
+import 'babel-polyfill';
+import {Entity, Scene} from 'aframe-react';
+// import 'aframe-room-component';
+import Textbox from './components/textbox'
+import Furniture from './components/furniture'
+import Lighting from './components/lights'
+
+
+
 
 class App extends Component {
-  render() {
-    return (
+  constructor(props){
+    super(props);
+    this.state = {color: 'red'};
+  }
 
-      <a-scene>
-
-
-
-        <a-text
-
-          value="Error Fo o Fo"
-          position='-3 3.5 -5'
-          color='black'
-
-          scale='5 5 5'
-          >
-          </a-text>
-
-          <a-box
-            position="-1 0.5 -3"
-            rotation="0 45 0"
-            color="#4CC3D9"
-            // scale=" 2 2 2"
-          >
-          <a-animation attribute="position" to="-1 2 -3" direction="alternate" dur="2000"
-              repeat="indefinite">
-
-              </a-animation>
-          </a-box>
-
-          <a-sphere
-            position="-8 1.25 -5"
-            radius="1.25"
-            color="#EF2D5E" />
-
-          <a-cylinder
-            position="8 0.75 -3"
-            radius="0.5"
-            height="1.5"
-            color="#FFC65D" />
-
-{/* lighting */}
-          {/* <a-light type="ambient" color="#445451"></a-light>
-          <a-light type="point" intensity="2" position="0 10 0"></a-light> */}
+  changeColor(){
+    const colors=['red','blue','orange','green','purple']
+    this.setState({
+      color:colors[Math.floor(Math.random() * colors.length)]
+    });
+  }
 
 
-{/* Ceiling  */}
-          <a-plane
-            static-body
-            // src="#groundTexture"
-            position="0 10 -4"
-            rotation="90 0 0"
-            scale="20 20 0"
-            // repeat="10 10"
-            color="red" />
-{/* Ground           */}
-          <a-plane
-            static-body
-            position="0 0 -4"
-            rotation="-90 0 0"
-            scale="20 20 0"
-            // repeat="10 10"
-            color="black" />
-{/* Adding object */}
-          <a-assets>
-            <a-asset-item id="tree" src="./static-assets/whiteboard.dae"></a-asset-item>
-          </a-assets>
+   render() {
+     return (
+       <div>
+         <div>
+         <textarea >HELLLLLLLOOO</textarea>
+         </div>
+       <Scene>
 
-          <a-collada-model src="#tree"></a-collada-model>
+           <a-assets>
+             <a-asset-item
+               id="modeldae"
+               src="./assets/model.dae">
+             </a-asset-item>
+             <a-asset-item
+               id="whiteboarddae"
+               src="./assets/whiteboard.dae">
+             </a-asset-item>
+           </a-assets>
 
-          <Bigbox/>
-      <Officeroom/>
+        <Furniture/>
+        <Lighting/>
 
-           {/* Camera cursor */}
-           <a-camera
-            position="-16 0 13"
-            visible="true"
-            color="#0095DD"
-            opacity="0.5">
-            >
-            <a-cursor></a-cursor>
-          </a-camera>
-        </a-scene>
+
+         <a-sky
+           id="sky"
+           position="0 0 0"
+           scale="-1 1 1"
+           radius="5000"
+           segments-width="64"
+           segments-height="20"
+           color="#072036"
+           opacity="1"
+           flat-shading="true"
+           shader="standard"
+           side="double"
+           repeat="1 1"
+           visible="true">
+         </a-sky>
+
+         <a-plane
+           id="ground"
+           position="0 0 0"
+           rotation="-90 0 0"
+           width="5000"
+           height="5000"
+           color="#283c43"
+           opacity="1"
+           shader="standard"
+           side="double"
+           metalness="0.5"
+           roughness="1"
+           repeat="1 1"
+           visible="true">
+         </a-plane>
+
+         <a-box
+           id="box"
+           position="0 1 0"
+           scale="10 8 15"
+           width="1"
+           height="1"
+           depth="1"
+           color="#ffffff"
+           opacity="1"
+           shader="standard"
+           side="double"
+           metalness="0.5"
+           roughness="1"
+           repeat="1 1"
+           visible="true"
+           class="clickable"
+           animation="startEvents: click;
+                     property: position;
+                     to: 0 0 0;
+                     dur: 2000;
+                     easing: linear;
+                     elasticity: 400;
+                     delay: 0;
+                     dir: normal;
+                     loop: 0; ">
+         </a-box>
+
+
+
+         {/* fence="width: 10; depth: 15; x0: 1; z0: 3" */}
+         <a-camera
+           look-controls
+           position="0 0 6"
+           visible="true"
+           >
+
+          <a-cursor></a-cursor>
+          <Textbox/>
+         </a-camera>
+
+       </Scene>
+
+       </div>
     );
   }
 }
