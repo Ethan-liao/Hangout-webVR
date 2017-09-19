@@ -17,13 +17,7 @@ class Textbox extends React.Component {
 
   render() {
     return (
-
-      // <a-plane
-      //   color={{this.state.color}}
-      //   position="0 0 0"
-      //   width='5'
-      //   height='5'
-      //   ></a-plane>
+      
 
         <Entity
           geometry={{primitive: 'plane', width:0.5, height:0.2}}
