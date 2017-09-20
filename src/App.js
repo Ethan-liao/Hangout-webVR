@@ -9,48 +9,57 @@ import 'aframe-mouse-cursor-component';
 import 'babel-polyfill';
 
 
-
-// import 'aframe-particle-system-component';
-// import 'jquery'
-// import 'aframe-room-component';
 import Textbox from './components/textbox'
 import Furniture from './components/furniture'
 import Lighting from './components/lights'
 import Room from './components/room'
 import Slides from './components/slides'
 import Floor from './components/floor'
+import keyCodes from './components/keystrokes.js';
+
 
 class App extends Component {
   constructor(){
     super();
-    this.changeColor=this.changeColor.bind(this);
-    this.handleCLick=this.handleCLick.bind(this);
+    this.eventChange=this.eventChange.bind(this);
+    this.eventSubmit=this.eventSubmit.bind(this);
+    // this.changeColor=this.changeColor.bind(this);
     this.state = {
       color: 'red',
-      textColor:'red',
-      text: "text from state"
-    };
+      keystroke:''
+      }
+    }
+
+
+  eventChange(event){
+    this.setState({keystroke:event.target.value})
+
   }
 
-  changeColor(){
-    const colors=['red','blue','orange','green','purple']
-    console.log("color been clicked !!!!");
+  eventSubmit(event) {
+      alert('A name was submitted: ' + this.state.keystroke);
+      event.preventDefault();
+    }
+  // changeColor(){
+  //   const colors=['red','blue','orange','green','purple']
+    // console.log("color been clicked !!!!");
     // this.setState({
     //   color:colors[Math.floor(Math.random() * colors.length)]
     // });
-  }
+  // }
 
-
-
-  handleCLick = () => {
-    console.log("handleCLick been clicked!!!!");
-  }
 
    render() {
      return (
-
-       <Scene>
-
+       <Entity>
+       <form onSubmit={this.eventSubmit}>
+         <label>
+           Enter text
+         <input type="text"  onChange={this.eventChange} value={this.state.keystroke} placeholder="type here"/>
+         </label>
+         <input type="submit" value='Submit'></input>
+       </form>
+       <Scene >
         <a-assets>
            <a-asset-item
              id="modeldae"
@@ -84,23 +93,24 @@ class App extends Component {
          </Entity>
 
          {/* fence="width: 10; depth: 15; x0: 1; z0: 3" */}
-         <Entity id="box"
+         {/* <Entity id="box"
             geometry={{primitive: 'box'}}
             material={{color: this.state.color, opacity: 0.6}}
             animation__2={{property: 'rotation', dur: 2000, loop: true, to: '360 360 360'}}
             animation__1={{property: 'scale', dir: 'alternate', dur: 100, loop: true, to: '1.1 1.1 1.1'}}
             position={{x: 0, y: 1, z: -3}}
             events={{click: this.handleCLick}}>
-          </Entity>
+          </Entity> */}
 
          <a-camera
+           wasd-controls-enabled="true"
            look-controls
            mouse-cursor
            position="0 0 6"
            visible="true"
            >
 
-         <Entity
+         {/* <Entity
            primitive='a-plane'
            material={{color:'black'}}
            width='2'
@@ -114,7 +124,7 @@ class App extends Component {
               >
           </Entity>
 
-         </Entity>
+         </Entity> */}
 
 
          <a-cursor></a-cursor>
@@ -122,12 +132,15 @@ class App extends Component {
         </a-camera>
 
        <Slides></Slides>
-       <Furniture/>
+       <Furniture keystroke={this.state.keystroke}/>
        <Lighting />
        <Room/>
        <Floor/>
 
        </Scene>
+
+</Entity>
+
     );
   }
 }

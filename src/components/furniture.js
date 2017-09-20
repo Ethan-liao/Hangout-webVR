@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {Entity, Scene} from 'aframe-react';
 
 class Furniture extends React.Component {
   render() {
@@ -10,7 +10,7 @@ class Furniture extends React.Component {
         <a-collada-model
           src="#modeldae"
           id="collada-model"
-          position="-0.80 0 2.10"
+          position="-1 0 2.10"
           rotation="0 1 0"
           scale="1.2 1.5 1.5"
           visible="true"
@@ -33,6 +33,15 @@ class Furniture extends React.Component {
           scale="0.7 1.5 1"
           visible="true"
           >
+            <Entity primitive='a-text'
+              text={{
+              value: this.props.keystroke,
+              color: 'black'
+            }} width="7"
+              height ="7"
+              position="0.751 1.737 0.127"
+              ></Entity>
+
           </a-collada-model>
      </a-entity>
     )
