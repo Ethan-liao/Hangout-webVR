@@ -35,7 +35,7 @@ class Furniture extends React.Component {
           >
             <Entity primitive='a-text'
               text={{
-              value: this.props.keystroke,
+              value: this.props.currentValue,
               color: 'black'
             }} width="7"
               height ="7"

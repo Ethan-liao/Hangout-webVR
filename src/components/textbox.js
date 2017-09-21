@@ -7,7 +7,7 @@ class Textbox extends React.Component {
   constructor(props) {
     super(props);
     this.handleCLick = this.handleCLick.bind(this);
-    // this.onKeyDown = this.onKeyDown.bind(this);
+
     this.onKeyDown = ()=>{console.log("Oh hello there")};
     this.state = {
       text: keyCodes[3],
@@ -28,10 +28,6 @@ class Textbox extends React.Component {
 
   }
 
-  // onKeyDown(e){
-  //    e.preventDefault()
-  //   console.log(e.nativeEvent.keyCode);
-  // }
 
   render() {
     return (
@@ -54,7 +50,7 @@ class Textbox extends React.Component {
         events={{click:this.handleCLick}}
         >
 
-      
+
       </Entity>
 
     )
