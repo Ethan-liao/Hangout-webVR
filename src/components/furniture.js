@@ -40,6 +40,7 @@ class Furniture extends React.Component {
             }} width="7"
               height ="7"
               position="0.751 1.737 0.127"
+               
               ></Entity>
 
           </a-collada-model>

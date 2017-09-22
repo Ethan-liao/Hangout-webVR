@@ -60,69 +60,86 @@ class App extends Component {
           <a-assets>
           {/* avatar */}
             <a-mixin id="avatar"
-                     geometry="primitive: box; depth: 0.3; height: 0.3; width: 0.3"
+                     geometry="primitive: sphere; radius: 0.20"
                      material="color: #222"
                      template="src: #avatar-template"></a-mixin>
-            <a-mixin id="chair-part"
-                     geometry="primitive: box"
-                     material="color: brown"></a-mixin>
             <a-mixin id="arm"
-                     geometry="primitive: box; depth: 0.08; height: 0.5; width: 0.08"
+                     geometry="primitive: cylinder; height: 0.5; radius: 0.05"
                      material="color: #222; shader: flat"></a-mixin>
             <a-mixin id="eye"
                      geometry="primitive: circle"
                      material="shader: flat; side: double"></a-mixin>
+            {/* avatar */}
 
             <a-asset-item id="modeldae"
-                          src="./assets/model.dae">
-            </a-asset-item>
+                          src="./assets/model.dae"></a-asset-item>
            <a-asset-item id="whiteboarddae"
-                         src="./assets/whiteboard.dae">
-          </a-asset-item>
+                         src="./assets/whiteboard.dae"></a-asset-item>
              {/* <video id="vid1" autoPlay loop="true" src="./assets/city.mp4"/> */}
              {/* <img id="my-image" src='./assets/chatlog_eg.png'/> */}
 
           </a-assets>
 
-          <Entity  camera wasd-controls-enabled="true"
-                    look-controls
+          <a-camera
+
                     mouse-cursor
-                    position="0 2 6"
-                    visible="true">
+                    position="0 0 6"
+                    firebase-broadcast="componentsOnce: mixin; components: position, rotation">
 
-          <a-cursor></a-cursor>
-          <Textbox/>
-          <a-entity random-position-at="selector: .chair; offset: 0 1.4 0.2"
-                         rotation="0 180 0"
-                         firebase-broadcast="components: position, rotation">
-                 <a-entity id="head" mixin="avatar"
-                           camera look-controls wasd-controls
-                           firebase-broadcast="componentsOnce: mixin;
-                                               components: position, raise-the-roof, rotation"
-                           raise-the-roof="false">
-                 </a-entity>
-           </a-entity>
-          <a-entity rotation="0 180 0">
-           <a-entity mixin="eye" geometry="radius: 0.08"
-                     material="shader: flat; side: double"
-                     position="-0.1 0.1 0.18">
-             <a-entity mixin="eye" geometry="radius: 0.02"
-                       material="color: #222"
-                       position="0 0 0.03"></a-entity>
-           </a-entity>
-           <a-entity mixin="eye" geometry="radius: 0.08" position="0.1 0.1 0.18">
-             <a-entity mixin="eye" geometry="radius: 0.02"
-                       material="color: #222" position="0 0 0.03"></a-entity>
-           </a-entity>
-         </a-entity>
-         {/* <!-- Arms. --> */}
-         <a-entity class="arms" position="0 -0.3 0">
-           <a-entity mixin="arm" position="-0.3 -0.25 0" rotation="0 0 -10"></a-entity>
-           <a-entity mixin="arm" position="0.3 -0.25 0" rotation="0 0 10"></a-entity>
-         </a-entity>
+              <a-cursor></a-cursor>
+              <Textbox/>
+              {/* head */}
+              <a-entity id="head" mixin="avatar"
+                        position="0 0 0.180"
+                        firebase-broadcast="componentsOnce: mixin;
+                                            components: position"
+                        raise-the-roof="false">
+              </a-entity>
+              {/* eyes */}
+              <a-entity rotation="0 180 0"
+                firebase-broadcast=" components:  rotation"
+                >
+                   <a-entity
+                             mixin="eye"
+                             geometry="radius: 0.08"
+                             material="shader: flat; side: double"
+                             position="-0.1 0.1 0.0182"
+                             firebase-broadcast=" components: position,material,geometry">
+                         <a-entity mixin="eye"
+                                   geometry="radius: 0.02"
+                                   material="color: #222"
+                                   position="0 0 0.04"
+                                   firebase-broadcast=" components: position,material,geometry">
+                                   ></a-entity>
+                   </a-entity>
+                   <a-entity mixin="eye"
+                             geometry="radius: 0.08"
+                             position="0.100 0.100 0.0182"
+                             firebase-broadcast=" components: position,material,geometry"
+                             >
+                          <a-entity mixin="eye"
+                                    geometry="radius: 0.02"
+                                    material="color: #222"
+                                    position="0 0 0.04"
+                                    firebase-broadcast=" components: position,material,geometry"
+                                    ></a-entity>
+                   </a-entity>
+             </a-entity>
+             {/* <!-- Arms. --> */}
+             <a-entity class="arms"
+                       position="0 -0.3 0.139"
+                       firebase-broadcast="components: position">
+                   <a-entity mixin="arm"
+                             position="-0.3 -0.25 0"
+                             rotation="0 0 -10"
+                             firebase-broadcast="componentsOnce: mixin; components: position,raise-arms, rotation"></a-entity>
+                   <a-entity mixin="arm"
+                             position="0.3 -0.25 0"
+                             rotation="0 0 10"
+                             firebase-broadcast="componentsOnce: mixin; components: position,raise-arms, rotation"></a-entity>
+             </a-entity>
 
-       </Entity>
-
+         </a-camera>
 
 
 
@@ -156,7 +173,8 @@ class App extends Component {
 
 
        <Slides></Slides>
-       <Furniture currentValue={this.state.currentValue}/>
+       <Furniture currentValue={this.state.currentValue}
+       firebase-broadcast=" components: currentValue"/>
        <Lighting />
        <Room/>
        <Floor/>
