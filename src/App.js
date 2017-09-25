@@ -49,15 +49,28 @@ class App extends Component {
          </label>
          <input type="submit"
                 value='Submit'></input>
+                {/* <div></div>
+                <label>
+                  Upload a file
+                <input type="file"
+                       accept="file_extension.pdf/audio/*,video/*,image/*"
+                       />
+                </label>
+                <input type="submit"
+                       value='Submit'></input> */}
+
        </form>
-       <a-scene firebase=
+
+
+       <a-scene stats firebase=
                       'apiKey: AIzaSyAwkYCXg66CRC_x-vOTsupga1iqySMUmUg;
                        authDomain: hangout-vr-debed.firebaseapp.com;
+                       channel: office;
                        databaseURL: https://hangout-vr-debed.firebaseio.com;
                        projectId: hangout-vr-debed;
                        storageBucket: hangout-vr-debed.appspot.com'>
 
-          <a-assets>
+          <a-assets >
           {/* avatar */}
             <a-mixin id="avatar"
                      geometry="primitive: sphere; radius: 0.20"
@@ -81,47 +94,46 @@ class App extends Component {
           </a-assets>
 
           <a-camera
-
                     mouse-cursor
                     position="0 0 6"
-                    firebase-broadcast="componentsOnce: mixin; components: position, rotation">
+                    firebase-broadcast="componentsOnce: mixin;
+                                        components: position, rotation">
 
               <a-cursor></a-cursor>
-              <Textbox/>
+              {/* <Textbox/> */}
               {/* head */}
-              <a-entity id="head" mixin="avatar"
+              <a-entity id="head" mixin="avatar" name="head1"
                         position="0 0 0.180"
-                        firebase-broadcast="componentsOnce: mixin;
-                                            components: position"
-                        raise-the-roof="false">
+                        firebase-broadcast="componentsOnce: mixin,position;"
+                                            >
               </a-entity>
               {/* eyes */}
               <a-entity rotation="0 180 0"
-                firebase-broadcast=" components:  rotation"
+                firebase-broadcast=" componentsOnce:  rotation"
                 >
                    <a-entity
                              mixin="eye"
                              geometry="radius: 0.08"
                              material="shader: flat; side: double"
                              position="-0.1 0.1 0.0182"
-                             firebase-broadcast=" components: position,material,geometry">
+                             firebase-broadcast=" componentsOnce: mixin,material,geometry;">
                          <a-entity mixin="eye"
                                    geometry="radius: 0.02"
                                    material="color: #222"
                                    position="0 0 0.04"
-                                   firebase-broadcast=" components: position,material,geometry">
+                                   firebase-broadcast=" componentsOnce: mixin,material,geometry; ">
                                    ></a-entity>
                    </a-entity>
                    <a-entity mixin="eye"
                              geometry="radius: 0.08"
                              position="0.100 0.100 0.0182"
-                             firebase-broadcast=" components: position,material,geometry"
+                             firebase-broadcast=" componentsOnce: mixin,material,geometry; "
                              >
                           <a-entity mixin="eye"
                                     geometry="radius: 0.02"
                                     material="color: #222"
                                     position="0 0 0.04"
-                                    firebase-broadcast=" components: position,material,geometry"
+                                    firebase-broadcast=" componentsOnce: mixin,material,geometry;"
                                     ></a-entity>
                    </a-entity>
              </a-entity>
@@ -132,13 +144,24 @@ class App extends Component {
                    <a-entity mixin="arm"
                              position="-0.3 -0.25 0"
                              rotation="0 0 -10"
-                             firebase-broadcast="componentsOnce: mixin; components: position,raise-arms, rotation"></a-entity>
+                             firebase-broadcast="componentsOnce: mixin,rotation;  "></a-entity>
                    <a-entity mixin="arm"
                              position="0.3 -0.25 0"
                              rotation="0 0 10"
-                             firebase-broadcast="componentsOnce: mixin; components: position,raise-arms, rotation"></a-entity>
+                             firebase-broadcast="componentsOnce: mixin, rotation; "></a-entity>
              </a-entity>
+             <a-entity position="-0.77 0.060 -1.19" firebase-broadcast="componentsOnce: position">
 
+               <Entity primitive='a-text'
+                 text={{
+                 value: this.state.currentValue,
+                 color: 'black'
+               }}
+                //  position="0.751 1.737 0.127"
+                 firebase-broadcast="
+                             componentsOnce: primitive, text "
+                 ></Entity>
+             </a-entity>
          </a-camera>
 
 
@@ -174,7 +197,8 @@ class App extends Component {
 
        <Slides></Slides>
        <Furniture currentValue={this.state.currentValue}
-       firebase-broadcast=" components: currentValue"/>
+       />
+
        <Lighting />
        <Room/>
        <Floor/>

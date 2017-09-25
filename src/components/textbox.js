@@ -1,18 +1,11 @@
 import React from 'react';
 import 'aframe';
-import {Entity, Scene} from 'aframe-react';
-import keyCodes from './keystrokes.js';
+import {Entity} from 'aframe-react';
 
 class Textbox extends React.Component {
   constructor(props) {
     super(props);
     this.handleCLick = this.handleCLick.bind(this);
-
-    this.onKeyDown = ()=>{console.log("Oh hello there")};
-    this.state = {
-      text: keyCodes[3],
-      typeStatus:false
-    };
   }
 
   changeColor() {
@@ -48,6 +41,7 @@ class Textbox extends React.Component {
           z: -1
         }}
         events={{click:this.handleCLick}}
+        firebase-broadcast=" componentsOnce: value;components: geometry, material, position"
         >
 
 
