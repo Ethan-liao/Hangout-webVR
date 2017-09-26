@@ -33,7 +33,7 @@ go3D(){
     return (
       <div>
         <Header/>
-        <Grid>
+        <Grid >
           <Row className="show-grid">
 
             <PageHeader>Please select from the below</PageHeader>

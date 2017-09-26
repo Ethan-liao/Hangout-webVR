@@ -1,4 +1,5 @@
 import React from 'react';
+// CSS
 import {
   Navbar,
   Nav,
@@ -8,10 +9,13 @@ import {
   Form,
   FormGroup,
   Col
-} from 'react-bootstrap'
-import './../CSS/bootstrap.css'
-import '../CSS/App.css'
-// import Footer from './footer'
+} from 'react-bootstrap';
+import './../CSS/bootstrap.css';
+import './../CSS/App.css';
+
+
+// import Newpage from "./newpage"
+import Footer from './footer';
 import 'react-dom'
 import {Redirect} from 'react-router-dom';
 import base from '../base';
@@ -111,7 +115,6 @@ logout(){
 
                     <FormGroup>
                       <Col smOffset={1} sm={10}>
-                      <h2>Yes, these are your only options</h2>
                       </Col>
                       <Col smOffset={1} sm={10}>
                          <Button bsStyle="danger" bsSize="large" onClick={() => this.authenticate('google')} block>Log in with Google</Button>
@@ -151,15 +154,12 @@ logout(){
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        {/* <!-- Footer --> */}
-        <footer className="py-5 bg-dark">
-          <div className="container">
-            <p className="m-0 text-center text-white">Copyright &copy; Hangout-vr 2017</p>
-          </div>
-          {/* <!-- /.container --> */}
-        </footer>
+        {/* <Newpage/> */}
+<Footer/>
 
-        {/* <Footer/> */}
+
+
+
       </div>
 
     )

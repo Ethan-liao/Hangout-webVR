@@ -75,7 +75,7 @@ class App extends Component {
                        value='Submit'></input> */}
 
        </form>
-       <a-scene stats firebase=
+       <a-scene firebase=
                       'apiKey: AIzaSyAwkYCXg66CRC_x-vOTsupga1iqySMUmUg;
                        authDomain: hangout-vr-debed.firebaseapp.com;
                        channel: office;
@@ -151,24 +151,24 @@ class App extends Component {
                              geometry="radius: 0.08"
                              material="shader: flat; side: double"
                              position="-0.1 0.1 0.0182"
-                             firebase-broadcast=" componentsOnce: mixin,geometry;">
+                             firebase-broadcast=" componentsOnce: position, mixin,geometry;">
                          <a-entity mixin="eye"
                                    geometry="radius: 0.02"
                                    material="color: #222"
                                    position="0 0 0.04"
-                                   firebase-broadcast=" componentsOnce: mixin,material,geometry; ">
+                                   firebase-broadcast=" componentsOnce:  position, mixin,material,geometry; ">
                                    ></a-entity>
                    </a-entity>
                    <a-entity mixin="eye"
                              geometry="radius: 0.08"
                              position="0.100 0.100 0.0182"
-                             firebase-broadcast=" componentsOnce: mixin,geometry; "
+                             firebase-broadcast=" componentsOnce: position, mixin,geometry; "
                              >
                           <a-entity mixin="eye"
                                     geometry="radius: 0.02"
                                     material="color: #222"
                                     position="0 0 0.04"
-                                    firebase-broadcast=" componentsOnce: mixin,material,geometry;"
+                                    firebase-broadcast=" componentsOnce: position, mixin,material,geometry;"
                                     ></a-entity>
                    </a-entity>
              </a-entity>
@@ -188,44 +188,13 @@ class App extends Component {
 
          </a-camera>
 
-
-
-         {/* <Entity primitive="a-sky"
-                 static-body
-                 id="sky"
-                 position={{x:0, y: 0, z: 0}}
-                 scale={{x:-1, y: 1, z: 1}}
-                 radius="5000"
-                 segments-width="64"
-                 segments-height="20"
-                 color="#072036"
-                 opacity="1"
-                 flat-shading="true"
-                 shader="standard"
-                 side="double"
-                 repeat="1 1"
-                 visible="true">
-         </Entity> */}
-
-         {/* fence="width: 10; depth: 15; x0: 1; z0: 3" */}
-         {/* <Entity id="box"
-            geometry={{primitive: 'box'}}
-            material={{color: this.state.color, opacity: 0.6}}
-            animation__2={{property: 'rotation', dur: 2000, loop: true, to: '360 360 360'}}
-            animation__1={{property: 'scale', dir: 'alternate', dur: 100, loop: true, to: '1.1 1.1 1.1'}}
-            position={{x: 0, y: 1, z: -3}}
-            events={{click: this.handleCLick}}>
-          </Entity> */}
-
-       <Furniture currentValue={this.state.currentValue}
-
-        />
+       <Furniture currentValue={this.state.currentValue}/>
 
        <Lighting />
        <Room/>
        <Floor />
 
-     </a-scene>
+      </a-scene>
       </Entity>
 
     );
