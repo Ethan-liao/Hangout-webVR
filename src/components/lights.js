@@ -6,20 +6,20 @@ class Lighting extends React.Component {
     return (
       <a-entity>
       <a-light
-        position="0.30 3.20 -3.10"
+        position="-0.13 3.2 -3.1"
         type="point"
         color="#ffffff"
-        intensity="1"
+        intensity="0.95"
         distance="0"
         light="castShadow: false;"
         visible="true"
       ></a-light>
 
       <a-light
-        position="0.30 3.20 5"
+        position="-0.11 3.20 1.954"
         type="point"
         color="#ffffff"
-        intensity="1"
+        intensity="0.95"
         distance="0"
         light="castShadow: false;"
         visible="true"

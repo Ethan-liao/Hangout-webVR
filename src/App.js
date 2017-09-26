@@ -7,12 +7,12 @@ import 'aframe-physics-components';
 import 'aframe-animation-component';
 import 'aframe-mouse-cursor-component';
 import 'babel-polyfill';
-
-import Textbox from './components/textbox'
+import {Redirect} from 'react-router-dom';
+// import Textbox from './components/textbox'
 import Furniture from './components/furniture'
 import Lighting from './components/lights'
 import Room from './components/room'
-import Slides from './components/slides'
+// import Slides from './components/slides'
 import Floor from './components/floor'
 
 
@@ -20,11 +20,13 @@ import Floor from './components/floor'
 class App extends Component {
   constructor(){
     super();
-    this.eventChange=this.eventChange.bind(this);
-    this.eventSubmit=this.eventSubmit.bind(this);
+    this.eventChange = this.eventChange.bind(this);
+    this.eventSubmit = this.eventSubmit.bind(this);
+    this.exitRoom = this.exitRoom.bind(this);
     this.state = {
       currentValue:'',
-      storedText:''
+      storedText:'',
+      redirect:false
       }
     }
 
@@ -35,9 +37,19 @@ class App extends Component {
   eventSubmit(event) {
     event.preventDefault();
       this.setState({currentValue:this.state.storedText})
+
     }
 
+  exitRoom(event){
+    event.preventDefault();
+    this.setState({redirect:true}
+    )
+  }
+
    render() {
+    //  if(this.state.redirect===true){
+    //    return <Redirect to="/account/"/>
+    //  }
      return (
        <Entity>
        <form onSubmit={this.eventSubmit}>
@@ -49,6 +61,9 @@ class App extends Component {
          </label>
          <input type="submit"
                 value='Submit'></input>
+                <button onClick={this.exitRoom}>Exit</button>
+
+
                 {/* <div></div>
                 <label>
                   Upload a file
@@ -60,8 +75,6 @@ class App extends Component {
                        value='Submit'></input> */}
 
        </form>
-
-
        <a-scene stats firebase=
                       'apiKey: AIzaSyAwkYCXg66CRC_x-vOTsupga1iqySMUmUg;
                        authDomain: hangout-vr-debed.firebaseapp.com;
@@ -70,42 +83,62 @@ class App extends Component {
                        projectId: hangout-vr-debed;
                        storageBucket: hangout-vr-debed.appspot.com'>
 
-          <a-assets >
+          <a-assets timeout="10000" >
           {/* avatar */}
             <a-mixin id="avatar"
                      geometry="primitive: sphere; radius: 0.20"
-                     material="color: #222"
-                     template="src: #avatar-template"></a-mixin>
+                     material="color: gray"
+                    ></a-mixin>
             <a-mixin id="arm"
                      geometry="primitive: cylinder; height: 0.5; radius: 0.05"
-                     material="color: #222; shader: flat"></a-mixin>
+                     material="color: gray;"></a-mixin>
             <a-mixin id="eye"
                      geometry="primitive: circle"
                      material="shader: flat; side: double"></a-mixin>
-            {/* avatar */}
 
-            <a-asset-item id="modeldae"
-                          src="./assets/model.dae"></a-asset-item>
-           <a-asset-item id="whiteboarddae"
+
+            <a-asset-item id="table"
+                          src="./assets/meetingTable.dae"></a-asset-item>
+
+            <a-asset-item id="whiteboarddae"
                          src="./assets/whiteboard.dae"></a-asset-item>
-             {/* <video id="vid1" autoPlay loop="true" src="./assets/city.mp4"/> */}
-             {/* <img id="my-image" src='./assets/chatlog_eg.png'/> */}
+            <img id="carpet" alt="carpet" src='./assets/carpet.jpg'/>
 
+
+            {/* bench              */}
+            <a-asset-item id="bench"
+                         src="./assets/bench1.dae"></a-asset-item>
+
+           <a-asset-item id="smBookshelf"
+                        src="./assets/bookshelfSmall.dae"></a-asset-item>
+            {/* light */}
+            <a-asset-item id="lightFixtures"
+                         src="./assets/circularLight.dae"></a-asset-item>
+
+           <a-asset-item id="door"
+                        src="./assets/Door.dae"></a-asset-item>
+          <a-asset-item id="glasswall"
+                       src="./assets/glassWall2.dae"></a-asset-item>
+             {/* <video id="vid1" autoPlay loop="true" src="./assets/city.mp4"/> */}
+
+             <img id="sky" src="./assets/skyscraper.jpg"/>
           </a-assets>
+
+
+
+
+          <a-sky src="#sky" rotation="0 180 0"></a-sky>
+
 
           <a-camera
                     mouse-cursor
                     position="0 0 6"
-                    firebase-broadcast="componentsOnce: mixin;
-                                        components: position, rotation">
+                    firebase-broadcast="componentsOnce: mixin,position;">
 
-              <a-cursor></a-cursor>
-              {/* <Textbox/> */}
               {/* head */}
-              <a-entity id="head" mixin="avatar" name="head1"
+              <a-entity id="head" mixin="avatar"
                         position="0 0 0.180"
-                        firebase-broadcast="componentsOnce: mixin,position;"
-                                            >
+                        firebase-broadcast="componentsOnce: mixin,position;">
               </a-entity>
               {/* eyes */}
               <a-entity rotation="0 180 0"
@@ -116,7 +149,7 @@ class App extends Component {
                              geometry="radius: 0.08"
                              material="shader: flat; side: double"
                              position="-0.1 0.1 0.0182"
-                             firebase-broadcast=" componentsOnce: mixin,material,geometry;">
+                             firebase-broadcast=" componentsOnce: mixin,geometry;">
                          <a-entity mixin="eye"
                                    geometry="radius: 0.02"
                                    material="color: #222"
@@ -127,7 +160,7 @@ class App extends Component {
                    <a-entity mixin="eye"
                              geometry="radius: 0.08"
                              position="0.100 0.100 0.0182"
-                             firebase-broadcast=" componentsOnce: mixin,material,geometry; "
+                             firebase-broadcast=" componentsOnce: mixin,geometry; "
                              >
                           <a-entity mixin="eye"
                                     geometry="radius: 0.02"
@@ -152,21 +185,20 @@ class App extends Component {
              </a-entity>
              <a-entity position="-0.77 0.060 -1.19" firebase-broadcast="componentsOnce: position">
 
-               <Entity primitive='a-text'
+               {/* <Entity primitive='a-text'
                  text={{
                  value: this.state.currentValue,
                  color: 'black'
                }}
-                //  position="0.751 1.737 0.127"
                  firebase-broadcast="
                              componentsOnce: primitive, text "
-                 ></Entity>
+                 ></Entity> */}
              </a-entity>
          </a-camera>
 
 
 
-         <Entity primitive="a-sky"
+         {/* <Entity primitive="a-sky"
                  static-body
                  id="sky"
                  position={{x:0, y: 0, z: 0}}
@@ -181,7 +213,7 @@ class App extends Component {
                  side="double"
                  repeat="1 1"
                  visible="true">
-         </Entity>
+         </Entity> */}
 
          {/* fence="width: 10; depth: 15; x0: 1; z0: 3" */}
          {/* <Entity id="box"
@@ -195,13 +227,13 @@ class App extends Component {
 
 
 
-       <Slides></Slides>
+       {/* <Slides></Slides> */}
        <Furniture currentValue={this.state.currentValue}
        />
 
        <Lighting />
        <Room/>
-       <Floor/>
+       <Floor />
 
      </a-scene>
       </Entity>
