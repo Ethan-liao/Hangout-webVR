@@ -119,9 +119,11 @@ class App extends Component {
                         src="./assets/Door.dae"></a-asset-item>
           <a-asset-item id="glasswall"
                        src="./assets/glassWall2.dae"></a-asset-item>
+         <a-asset-item id="clock"
+                      src="./assets/wallclock.dae"></a-asset-item>
              {/* <video id="vid1" autoPlay loop="true" src="./assets/city.mp4"/> */}
 
-             <img id="sky" src="./assets/skyscraper.jpg"/>
+             <img id="sky" alt="building" src="./assets/skyscraper.jpg"/>
           </a-assets>
 
 
@@ -183,17 +185,7 @@ class App extends Component {
                              rotation="0 0 10"
                              firebase-broadcast="componentsOnce: mixin, rotation; "></a-entity>
              </a-entity>
-             <a-entity position="-0.77 0.060 -1.19" firebase-broadcast="componentsOnce: position">
 
-               {/* <Entity primitive='a-text'
-                 text={{
-                 value: this.state.currentValue,
-                 color: 'black'
-               }}
-                 firebase-broadcast="
-                             componentsOnce: primitive, text "
-                 ></Entity> */}
-             </a-entity>
          </a-camera>
 
 
@@ -225,11 +217,9 @@ class App extends Component {
             events={{click: this.handleCLick}}>
           </Entity> */}
 
-
-
-       {/* <Slides></Slides> */}
        <Furniture currentValue={this.state.currentValue}
-       />
+
+        />
 
        <Lighting />
        <Room/>
