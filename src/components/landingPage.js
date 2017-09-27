@@ -151,17 +151,13 @@ logout(){
               </NavItem> */}
               {/* {logout} */}
 
-            </Nav>
-          </Navbar.Collapse>
-        </Navbar>
+             </Nav>
+           </Navbar.Collapse>
+         </Navbar>
         {/* <Newpage/> */}
-<Footer/>
-
-
-
+        <Footer/>
 
       </div>
-
     )
   }
 }
