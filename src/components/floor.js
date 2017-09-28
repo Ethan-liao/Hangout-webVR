@@ -15,7 +15,7 @@ class Floor extends React.Component {
         scale="0.517 0.766 1"
         width='20'
         height="20"
-        color="#283c43"
+        // color="#283c43"
         opacity="1"
         roughness="1"
         repeat="30 30"

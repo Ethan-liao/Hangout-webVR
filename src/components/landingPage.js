@@ -52,7 +52,7 @@ class Landingpage extends React.Component {
   }
 
   authenticate(provider){
-    console.log(`trying to log in with ${provider}`);
+    // console.log(`trying to log in with ${provider}`);
     base.authWithOAuthPopup(provider, this.authHandler);
   }
 

@@ -30,6 +30,9 @@ go3D(){
     if(this.state.redirect===true){
       return <Redirect to="/room"/>
     }
+    const sizing={
+      height:'auto'
+    }
     return (
       <div>
         <Header/>
@@ -46,7 +49,7 @@ go3D(){
           <Row >
 
             <Col xs={6} md={4}>
-              <Thumbnail src="../../assets/officeRoom1.png">
+              <Thumbnail src="../../assets/officeRoom1.png" >
                 <Row>
                   <Col xs={6} md={4}></Col>
                   <Col xs={6} md={4}>
@@ -62,7 +65,7 @@ go3D(){
 
 
             <Col xs={6} md={4}>
-              <Thumbnail src="../../assets/OfficeRoom.jpg">
+              <Thumbnail src="../../assets/officeRoom.jpg">
                 <Row>
                   <Col xs={6} md={4}></Col>
                   <Col xs={6} md={4}>
@@ -76,7 +79,7 @@ go3D(){
 
 
             <Col xs={6} md={4}>
-              <Thumbnail src="../../assets/officeRoom3.jpg">
+              <Thumbnail style={sizing} src="../../assets/officeRoom3.jpg">
                 <Row>
                   <Col xs={6} md={4}></Col>
                   <Col xs={6} md={4}>
