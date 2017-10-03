@@ -2,7 +2,7 @@
 
  Meet up with your friends virtually, anywhere, anytime. 
 
-![alt text](https://github.com/0O7/Hangout-webVR/Office.png "Logo Title Text 1")
+![Image of hangout-vr](https://raw.githubusercontent.com/0O7/Hangout-webVR/ee9309392327435c477913b60372b8a4d028802e/Office.png "Hangout-VR image")
 
 
 ## Vision
