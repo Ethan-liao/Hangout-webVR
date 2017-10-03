@@ -2,7 +2,7 @@
 
  Meet up with your friends virtually, anywhere, anytime. 
 
-![alt text](Hangout-webVR/Screen Shot 2017-09-26 at 8.15.55 PM.png "Logo Title Text 1")
+![alt text](https://github.com/0O7/Hangout-webVR/Office.png "Logo Title Text 1")
 
 
 ## Vision
