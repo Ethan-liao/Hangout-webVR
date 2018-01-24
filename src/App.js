@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Entity, Scene} from 'aframe-react';
+import {Entity} from 'aframe-react';
 import 'aframe';
 import 'aframe-firebase-component'
 import 'aframe-physics-system';
@@ -7,14 +7,14 @@ import 'aframe-physics-components';
 import 'aframe-animation-component';
 import 'aframe-mouse-cursor-component';
 import 'babel-polyfill';
-import {Redirect} from 'react-router-dom';
+// import {Redirect} from 'react-router-dom';
 // import Textbox from './components/textbox'
 import Furniture from './components/furniture'
 import Lighting from './components/lights'
 import Room from './components/room'
 // import Slides from './components/slides'
 import Floor from './components/floor'
-
+import apidetails from './config/keys'
 
 
 class App extends Component {
@@ -50,6 +50,7 @@ class App extends Component {
     //  if(this.state.redirect===true){
     //    return <Redirect to="/account/"/>
     //  }
+    const keys = apidetails
      return (
        <Entity>
        <form onSubmit={this.eventSubmit}>
@@ -75,13 +76,8 @@ class App extends Component {
                        value='Submit'></input> */}
 
        </form>
-       <a-scene firebase=
-                      'apiKey: AIzaSyAwkYCXg66CRC_x-vOTsupga1iqySMUmUg;
-                       authDomain: hangout-vr-debed.firebaseapp.com;
-                       channel: office;
-                       databaseURL: https://hangout-vr-debed.firebaseio.com;
-                       projectId: hangout-vr-debed;
-                       storageBucket: hangout-vr-debed.appspot.com'>
+       <a-scene firebase =
+         `${keys}` >
 
           <a-assets timeout="10000" >
           {/* avatar */}
