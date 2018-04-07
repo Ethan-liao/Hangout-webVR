@@ -14,7 +14,7 @@ import Lighting from './components/lights'
 import Room from './components/room'
 // import Slides from './components/slides'
 import Floor from './components/floor'
-import apidetails from './config/keys'
+// import apidetails from './config/keys'
 
 
 class App extends Component {
@@ -50,7 +50,7 @@ class App extends Component {
     //  if(this.state.redirect===true){
     //    return <Redirect to="/account/"/>
     //  }
-    const keys = apidetails
+    // const keys = apidetails
      return (
        <Entity>
        <form onSubmit={this.eventSubmit}>
@@ -76,8 +76,13 @@ class App extends Component {
                        value='Submit'></input> */}
 
        </form>
-       <a-scene firebase =
-         `${keys}` >
+       <a-scene firebase=
+         'apiKey: AIzaSyAwkYCXg66CRC_x-vOTsupga1iqySMUmUg;
+         authDomain: hangout-vr-debed.firebaseapp.com;
+         channel: office;
+          databaseURL: https://hangout-vr-debed.firebaseio.com;
+          projectId: hangout-vr-debed;
+           storageBucket: hangout-vr-debed.appspot.com'>
 
           <a-assets timeout="10000" >
           {/* avatar */}

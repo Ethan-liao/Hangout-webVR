@@ -1,16 +1,29 @@
 # Hangout-webVR
 
- Meet up with your friends virtually, anywhere, anytime. 
+Virtual-Reality based platform designed for multiple users to meet up virtually anywhere as long as they have access to the web.
 
-![Image of hangout-vr](https://raw.githubusercontent.com/0O7/Hangout-webVR/ee9309392327435c477913b60372b8a4d028802e/Office.png "Hangout-VR image")
+Current functionality includes
+- text chat
 
-
-## Vision
-
-A virtual-reality-based platform where users have choices of different scenes to choose from. Functionalities include text chat, file upload for file/presentation sharing, chat to other users via microphones, vitrual screen hover and is fixed to each users camera, and physical interactions including object pick-up and hand-off to other users. 
+Future Functionalities
+- file upload for file/presentation sharing
+- chat to other users via microphones
+- virtual screen hover and is fixed to each users camera
+- physical interactions including object pick-up and hand-off to other users.
 
 ### Technologies used
 
-React, React-bootstrap, Aframe-vr, Node, Firebase
+* [React](https://reactjs.org/) - Front-end web library
+* [React-bootstrap](https://react-bootstrap.github.io/) - Bootstrap styling web framework
+* [Aframe-vr](https://aframe.io/) - Web-based virtual reality framework
+* [Node.js](https://nodejs.org/en/) - Server-side scripting
+* [Firebase](https://firebase.google.com/) - NoSQL cloud database
 
-Deployed on [firebase](https://hangout-vr-debed.firebaseapp.com)
+### Deployed Site
+[Firebase](https://hangout-vr-debed.firebaseapp.com)
+
+* Login page ![Login page](./Images/Login_page.png "Login page")
+* Choosing a scene ![Scenes](./Images/Choose.png "Scenes")
+* Multiple user in one room ![Front-page](./Images/hangout-vr-interior.png "Hangout-VR image")
+* Each user can chat on the whiteboard ![Writing](./Images/Hello_text.png "Writing")
+* Short clip ![Writing](https://media.giphy.com/media/26wkSLrSJXf0gmflu/giphy.gif)
